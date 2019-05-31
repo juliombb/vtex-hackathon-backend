@@ -1,0 +1,46 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.2.RELEASE")
+    }
+}
+
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.3.0'
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.movile.playkids'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.graphql-java:graphql-java:11.0' // NEW
+    compile 'com.graphql-java:graphql-java-spring-boot-starter-webmvc:1.0' // NEW
+    compile 'com.google.guava:guava:26.0-jre' // NEW
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compile "org.springframework.boot:spring-boot-starter-web:2.1.2.RELEASE"
+    compile "org.springframework.boot:spring-boot-starter:2.1.2.RELEASE"
+    compile group: 'org.springframework', name: 'spring-jdbc', version: '5.1.4.RELEASE'// https://mvnrepository.com/artifact/postgresql/postgresql
+    compile group: 'postgresql', name: 'postgresql', version: '9.0-801.jdbc4'
+
+    testCompile "org.springframework.boot:spring-boot-starter-test:2.1.2.RELEASE"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}

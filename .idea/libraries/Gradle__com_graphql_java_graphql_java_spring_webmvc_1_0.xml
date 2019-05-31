@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.graphql-java:graphql-java-spring-webmvc:1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.graphql-java/graphql-java-spring-webmvc/1.0/93bd3420e9fd1c9e03cf2de0f438f9da2af923b4/graphql-java-spring-webmvc-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.graphql-java/graphql-java-spring-webmvc/1.0/7d43f518140d8eacce8f7392dec1d7f060791dde/graphql-java-spring-webmvc-1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

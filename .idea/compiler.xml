@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="graphql-poc_main" target="1.9" />
+      <module name="graphql-poc_test" target="1.9" />
+      <module name="vtex-hackathon-backend_main" target="1.9" />
+      <module name="vtex-hackathon-backend_test" target="1.9" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

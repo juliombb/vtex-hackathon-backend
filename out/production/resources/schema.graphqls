@@ -1,0 +1,31 @@
+type Person {
+  id: ID!
+  name: String!
+  age: Int!
+  children: [Child!]!
+}
+
+type Child {
+  id: ID!
+  name: String!
+  age: Int!
+  parentId: ID!
+  favoriteCartoonId: Int!
+}
+
+type Query {
+  allPersons(last: Int): [Person!]!
+
+  personById(id: ID): Person
+}
+
+type Mutation {
+  createPerson(name: String!, age: Int!): Person!
+
+  newChild(
+    parentId: ID!,
+    name: String!,
+    age: Int!,
+    favoriteCartoonId: Int!
+  ): Person!
+}
