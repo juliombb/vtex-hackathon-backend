@@ -87,14 +87,14 @@ type WishListItem {
 }
 
 type Query {
-#  allMarkets(): [Market!]!
+  allMarkets(): [Market!]!
 
   customerById(id: ID!): Customer
   customerByEmail(email: String!): Customer
-#  customerPurchases(customerId: ID!): [Purchase!]!
-#  customerWishLists(customerId: ID!, active: Boolean = true): [WishList!]!
-#
-#  product(id: ID!): Product!
+  customerPurchases(customerId: ID!): [Purchase!]!
+  customerWishLists(customerId: ID!, active: Boolean = true): [WishList!]!
+
+  product(id: ID!): Product!
 }
 
 type Mutation {
@@ -113,8 +113,8 @@ type Mutation {
   removeProductFromWishList(wishListId: ID!, productId: ID!): WishList!
   disableWishList(wishListId: ID!): WishList!
 
-#  startPurchase(customerId: ID!, cashBoxId: ID!): Purchase!
-#  addItemToPurchase(productId: ID!, purchaseId: ID!): Purchase!
-#  cashboxApprovePurchase(purchaseId: ID!): Purchase!
-#  customerApprovePurchase(purchaseId: ID!): Purchase!
+  startPurchase(customerId: ID!, cashBoxId: ID!): Purchase!
+  addItemToPurchase(productId: ID!, purchaseId: ID!): Purchase!
+  cashboxApprovePurchase(purchaseId: ID!): Purchase!
+  customerApprovePurchase(purchaseId: ID!): Purchase!
 }

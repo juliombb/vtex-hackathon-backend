@@ -37,3 +37,4 @@ fun ResultSet.toProduct(): Product {
         price = getLongIfPresent(ProductFetchers.PRICE)
     )
 }
+

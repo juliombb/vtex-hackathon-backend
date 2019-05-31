@@ -5,6 +5,8 @@ import com.vtex.hackathon.graphql.model.Gender
 import graphql.schema.DataFetcher
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.stereotype.Component
+import java.time.Clock
+import java.time.Instant
 
 /**
  * @author Júlio Moreira Blás de Barros (julio.barros@movile.com)
@@ -13,7 +15,6 @@ import org.springframework.stereotype.Component
 @Component
 class CustomerMutators(
     private val jdbc: NamedParameterJdbcTemplate,
-    private val wishListBaseFetcher: DataFetcher<Customer>,
     private val clock: Clock
 ) {
     val creator: DataFetcher<Customer> =
@@ -44,9 +45,9 @@ class CustomerMutators(
                 cpf = cpf,
                 email = email,
                 phone = phone,
-                gender = gender,
-                birthDate = birthDate
-                )
+                gender = if (gender != null) Gender.valueOf(gender) else null,
+                birthDate = if (birthDate != null) Instant.parse(birthDate) else null
+            )
         }
 
     companion object {
