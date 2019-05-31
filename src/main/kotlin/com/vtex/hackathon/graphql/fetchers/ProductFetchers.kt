@@ -17,6 +17,15 @@ import java.sql.ResultSet
  */
 @Component
 class ProductFetchers(private val jdbc: NamedParameterJdbcTemplate) {
+    val allProductsFetcher: DataFetcher<List<Product>> =
+        DataFetcher { environment ->
+            val parentFields = extractSelectionFields(environment)
+
+            jdbc.query(
+                FIND_PRODUCTS_QUERY.format(parentFields)
+            ) { resultSet, _ -> resultSet.toProduct() }
+        }
+
     val productByIdFetcher: DataFetcher<Product?> =
         DataFetcher { environment ->
             val id = environment.getArgument<String>("id")
@@ -32,6 +41,7 @@ class ProductFetchers(private val jdbc: NamedParameterJdbcTemplate) {
         val parentFields = environment.fields
             .flatMap { it.selectionSet.selections }
             .mapNotNull { it as? Field }
+            .filter { it.name != "__typename" }
             .joinToString(", ") { it.name }
         return parentFields
     }
@@ -45,6 +55,6 @@ class ProductFetchers(private val jdbc: NamedParameterJdbcTemplate) {
 
 
         val FIND_PRODUCT_QUERY = "SELECT %s FROM product WHERE id = :$ID"
-
+        val FIND_PRODUCTS_QUERY = "SELECT %s FROM product"
     }
 }

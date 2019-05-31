@@ -10,6 +10,7 @@ import graphql.language.Field
 import graphql.schema.DataFetcher
 import graphql.schema.DataFetchingEnvironment
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
+import org.springframework.stereotype.Component
 import java.sql.ResultSet
 import java.time.Clock
 
@@ -17,6 +18,7 @@ import java.time.Clock
  * @author Júlio Moreira Blás de Barros (julio.barros@movile.com)
  * @since 5/31/19
  */
+@Component
 class PurchaseMutators(
     private val jdbc: NamedParameterJdbcTemplate,
     private val purchasetBaseFetcher: DataFetcher<Purchase>,
@@ -34,8 +36,8 @@ class PurchaseMutators(
                 mapOf(
                     CUSTOMER_ID to customerId,
                     CASH_BOX_ID to cashBoxId,
-                    STATUS to status,
-                    STARTED_AT to startedAt,
+                    STATUS to status.name,
+                    STARTED_AT to startedAt.toString(),
                     TOTAL to 0
                 )
             ) { rs, _ -> rs.getLong(1) }.first()
@@ -107,8 +109,12 @@ class PurchaseMutators(
 
     fun customerApprove (purchaseId: PurchaseId) {
         jdbc.query(
-            UPDATE_STATUS,
-            mapOf(STATUS to PurchaseStatus.FINISHED.name, ID to purchaseId)
+            UPDATE_STATUS_AND_FINISH,
+            mapOf(
+                STATUS to PurchaseStatus.FINISHED.name,
+                ID to purchaseId,
+                FINISHED_AT to clock.instant().toString()
+            )
         ) { _, _ -> }
     }
 
@@ -173,17 +179,11 @@ class PurchaseMutators(
         ) { _, _ -> }
     }
 
-    private fun disableWishList(purchaseId: PurchaseId) {
-        jdbc.query(
-            DELETE_ITEM_QUERY,
-            mapOf(ID to purchaseId)
-        ) { _, _ -> }
-    }
-
     private fun extractSelectionFields(environment: DataFetchingEnvironment) =
         environment.fields
             .flatMap { it.selectionSet.selections }
             .mapNotNull { it as? Field }
+            .filter { it.name != "__typename" }
 
     private fun ResultSet.toPurchaseItem() =
         PurchaseItem(
@@ -199,14 +199,14 @@ class PurchaseMutators(
         const val CASH_BOX_ID = "cash_box_id"
         const val STATUS = "status"
         const val STARTED_AT = "started_at"
-        const val FINISHIED_AT = "finishied_at"
+        const val FINISHED_AT = "finished_at"
         const val TOTAL = "total"
         const val AMOUNT = "amount"
 
         val INSERT_QUERY = "INSERT INTO $PURCHASE_TABLE ($CUSTOMER_ID, $CASH_BOX_ID, $STATUS, " +
-                "$STARTED_AT, $FINISHIED_AT, $TOTAL) " +
+                "$STARTED_AT, $FINISHED_AT, $TOTAL) " +
                 "VALUES (:$CUSTOMER_ID, :$CASH_BOX_ID, :$STATUS, " +
-                "$STARTED_AT, $FINISHIED_AT, $TOTAL) RETURNING $ID"
+                ":$STARTED_AT::timestamp, null, :$TOTAL) RETURNING $ID"
 
         val INCREASE_TOTAL_QUERY = "UPDATE $PURCHASE_TABLE SET $TOTAL = $TOTAL + :$AMOUNT " +
                 "WHERE $ID = :$ID"
@@ -217,6 +217,10 @@ class PurchaseMutators(
         val UPDATE_STATUS = "UPDATE $PURCHASE_TABLE SET $STATUS = :$STATUS " +
                 "WHERE $ID = :$ID"
 
+        val UPDATE_STATUS_AND_FINISH = "UPDATE $PURCHASE_TABLE " +
+                "SET $STATUS = :$STATUS, $FINISHED_AT = :$FINISHED_AT " +
+            "WHERE $ID = :$ID"
+
         const val PURCHASE_ITEM = "purchase_item"
         const val PURCHASE_ID = "purchase_id"
         const val PRODUCT_ID = "product_id"
@@ -225,11 +229,11 @@ class PurchaseMutators(
         val INSERT_ITEM_QUERY = "INSERT INTO $PURCHASE_ITEM ($PURCHASE_ID, $PRODUCT_ID, $QUANTITY) " +
                 "VALUES (:$PURCHASE_ID, :$PRODUCT_ID, 1) RETURNING $PURCHASE_ID, $PRODUCT_ID, $QUANTITY"
 
-        val ADD_ITEM_QUERY = "UPDATE $PURCHASE_ITEM SET $QUANTITY = :$QUANTITY + 1 " +
+        val ADD_ITEM_QUERY = "UPDATE $PURCHASE_ITEM SET $QUANTITY = $QUANTITY + 1 " +
                 "WHERE $PURCHASE_ID = :$PURCHASE_ID AND $PRODUCT_ID = :$PRODUCT_ID " +
                 "RETURNING $PURCHASE_ID, $PRODUCT_ID, $QUANTITY"
 
-        val DEC_ITEM_QUERY = "UPDATE $PURCHASE_ITEM SET $QUANTITY = :$QUANTITY + 1 " +
+        val DEC_ITEM_QUERY = "UPDATE $PURCHASE_ITEM SET $QUANTITY = $QUANTITY - 1 " +
                 "WHERE $PURCHASE_ID = :$PURCHASE_ID AND $PRODUCT_ID = :$PRODUCT_ID " +
                 "RETURNING $PURCHASE_ID, $PRODUCT_ID, $QUANTITY"
 

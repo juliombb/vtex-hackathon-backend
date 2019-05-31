@@ -34,6 +34,15 @@ type Product {
   price: Long!
 }
 
+type FullItem {
+  id: ID!
+  category: String!
+  asset: String!
+  description: String
+  price: Long!
+  quantity: Long!
+}
+
 enum CashBoxStatus {
   AVAILABLE,
   IN_USE,
@@ -57,7 +66,7 @@ type Purchase {
   id: ID!
   customerId: Long!
   cashBoxId: Long!
-  products: [Product!]!
+  products: [FullItem!]!
   startedAt: String!
   finishedAt: String
   total: Long!
@@ -75,10 +84,10 @@ type Shelf {
 }
 
 type WishList {
-  wishListId: Long!
+  id: ID!
   customerId: Long!
   createdAt: String!
-  products: [Product!]!
+  products: [FullItem!]!
 }
 
 type WishListItem {
@@ -87,26 +96,27 @@ type WishListItem {
 }
 
 type Query {
-  allMarkets(): [Market!]!
+  allMarkets: [Market!]!
+  market(id: ID!): Market
 
   customerById(id: ID!): Customer
   customerByEmail(email: String!): Customer
   customerPurchases(customerId: ID!): [Purchase!]!
   customerWishLists(customerId: ID!, active: Boolean = true): [WishList!]!
 
-  product(id: ID!): Product!
+  allProducts: [Product!]!
+  product(id: ID!): Product
 }
 
 type Mutation {
-#  createCustomer(
-#    id: ID!
-#    email: String!
-#    name: String!
-#    cpf: String!
-#    gender: Gender
-#    phone: String
-#    birthDate: String
-#  ): Customer!
+  createCustomer(
+    email:  String!
+    name: String!
+    cpf: String!
+    gender: Gender = null
+    phone: String = null
+    birthDate: String = null
+  ): Customer!
 
   createWishList(customerId: ID!): WishList!
   addProductToWishList(wishListId: ID!, productId: ID!): WishList!
@@ -114,7 +124,7 @@ type Mutation {
   disableWishList(wishListId: ID!): WishList!
 
   startPurchase(customerId: ID!, cashBoxId: ID!): Purchase!
-  addItemToPurchase(productId: ID!, purchaseId: ID!): Purchase!
+  addItemToPurchase(purchaseId: ID!, productId: ID!): Purchase!
   cashboxApprovePurchase(purchaseId: ID!): Purchase!
   customerApprovePurchase(purchaseId: ID!): Purchase!
 }

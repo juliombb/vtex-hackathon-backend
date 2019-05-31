@@ -45,6 +45,7 @@ class CustomerFetchers(private val jdbc: NamedParameterJdbcTemplate) {
         val parentFields = environment.fields
             .flatMap { it.selectionSet.selections }
             .mapNotNull { it as? Field }
+            .filter { it.name != "__typename" }
             .joinToString(", ") { it.name }
         return parentFields
     }

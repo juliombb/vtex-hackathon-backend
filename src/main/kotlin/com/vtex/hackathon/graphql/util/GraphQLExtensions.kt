@@ -11,3 +11,4 @@ fun DataFetchingEnvironment.extractSelectionFields() =
     this.fields
         .flatMap { it.selectionSet.selections }
         .mapNotNull { it as? Field }
+        .filter { it.name != "__typename" }

@@ -1,6 +1,7 @@
 package com.vtex.hackathon.graphql.util
 
 import com.vtex.hackathon.graphql.fetchers.ProductFetchers
+import com.vtex.hackathon.graphql.model.FullItem
 import com.vtex.hackathon.graphql.model.Product
 import java.sql.ResultSet
 
@@ -35,6 +36,19 @@ fun ResultSet.toProduct(): Product {
         asset = getStringIfPresent(ProductFetchers.ASSET),
         description = getStringIfPresent(ProductFetchers.DESCRIPTION),
         price = getLongIfPresent(ProductFetchers.PRICE)
+    )
+}
+
+
+private const val QUANTITY = "quantity"
+fun ResultSet.toFullItem(): FullItem {
+    return FullItem(
+        id = getStringIfPresent(ProductFetchers.ID),
+        category = getStringIfPresent(ProductFetchers.CATEGORY),
+        asset = getStringIfPresent(ProductFetchers.ASSET),
+        description = getStringIfPresent(ProductFetchers.DESCRIPTION),
+        price = getLongIfPresent(ProductFetchers.PRICE),
+        quantity = getLongIfPresent(QUANTITY)
     )
 }
 

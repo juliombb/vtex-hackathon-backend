@@ -10,13 +10,15 @@
 
 CREATE TABLE market(
     id BIGSERIAL PRIMARY KEY,
-    address VARCHAR(255) NOT NULL
+    address VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    asset TEXT
 );
 
 CREATE TABLE product(
     id VARCHAR(255) PRIMARY KEY,
     category VARCHAR(30) NOT NULL,
-    asset VARCHAR(255),
+    asset TEXT,
     description TEXT,
     price BIGINT NOT NULL 
 );
@@ -41,6 +43,7 @@ CREATE TABLE purchase (
     id BIGSERIAL PRIMARY KEY,
     customer_id BIGINT NOT NULL,
     cash_box_id BIGINT NOT NULL,
+    status VARCHAR(255) NOT NULL,
     started_at TIMESTAMP NOT NULL,
     finished_at TIMESTAMP,
     total BIGINT NOT NULL
@@ -48,21 +51,21 @@ CREATE TABLE purchase (
 
 CREATE TABLE purchase_item(
   purchase_id BIGINT NOT NULL,
-  product_id BIGINT NOT NULL,
+  product_id VARCHAR(255) NOT NULL,
   quantity INT NOT NULL,
   PRIMARY KEY (purchase_id, product_id)
 );
 
 CREATE TABLE wish_list(
-  WISH_LIST_ID BIGSERIAL PRIMARY KEY,
-  CUSTOMER_ID BIGINT NOT NULL,
-  CREATED_AT TIMESTAMP NOT NULL,
-  ACTIVE BOOLEAN DEFAULT true
+  wish_list_id BIGSERIAL PRIMARY KEY,
+  customer_id BIGINT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  active BOOLEAN DEFAULT true
 );
 
 CREATE TABLE wish_list_item(
   wish_list_id BIGINT NOT NULL,
-  product_id BIGINT NOT NULL,
+  product_id VARCHAR(255) NOT NULL,
   quantity INT NOT NULL,
   PRIMARY KEY (wish_list_id, product_id)
 );

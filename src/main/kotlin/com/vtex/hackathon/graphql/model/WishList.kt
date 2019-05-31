@@ -8,11 +8,20 @@ import java.time.Instant
  */
 typealias WishListId = Long
 data class WishList (
-    val wishListId: WishListId? = null,
+    val id: WishListId? = null,
     val customerId: CustomerId? = null,
     val createdAt: Instant? = null,
     val active: Boolean,
-    val products: List<Product> = emptyList()
+    val products: List<FullItem> = emptyList()
+)
+
+data class FullItem(
+    val id: ProductId? = null,
+    val category: CategoryId? = null,
+    val asset: Asset? = null,
+    val description: String? = null,
+    val price: Long? = null,
+    val quantity: Long? = null
 )
 
 data class WishListItem (

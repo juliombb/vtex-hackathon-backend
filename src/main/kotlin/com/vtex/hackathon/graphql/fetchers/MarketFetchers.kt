@@ -21,11 +21,23 @@ class MarketFetchers(private val jdbc: NamedParameterJdbcTemplate) {
         DataFetcher { environment ->
             val id = environment.getArgument<String>("id").toLong()
 
-            val parentFields = environment.extractSelectionFields().map { it.name }
+            val parentFields = environment.extractSelectionFields()
+                .joinToString(", ") { it.name }
 
             jdbc.query(
                 FIND_MARKET_QUERY.format(parentFields), mapOf(ID to id)
             ) { resultSet, _ -> resultSet.toMarket() }.firstOrNull()
+        }
+
+    val allMarketsFetcher: DataFetcher<List<Market>> =
+        DataFetcher { environment ->
+
+            val parentFields = environment.extractSelectionFields()
+                .joinToString(", ") { it.name }
+
+            jdbc.query(
+                FIND_MARKETS_QUERY.format(parentFields)
+            ) { resultSet, _ -> resultSet.toMarket() }
         }
 
     private fun ResultSet.toMarket(): Market {
@@ -33,7 +45,7 @@ class MarketFetchers(private val jdbc: NamedParameterJdbcTemplate) {
             id = getLongIfPresent(ID),
             address = getStringIfPresent(ADDRESS),
             asset = getStringIfPresent(ASSET),
-            name = getStringIfPresent (name)
+            name = getStringIfPresent(NAME)
         )
     }
 
@@ -43,7 +55,7 @@ class MarketFetchers(private val jdbc: NamedParameterJdbcTemplate) {
         const val ASSET = "asset"
         const val NAME = "name"
 
-
+        val FIND_MARKETS_QUERY = "SELECT %s FROM market"
         val FIND_MARKET_QUERY = "SELECT %s FROM market WHERE id = :$ID"
     }
 }

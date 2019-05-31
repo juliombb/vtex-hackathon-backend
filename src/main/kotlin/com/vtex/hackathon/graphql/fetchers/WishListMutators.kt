@@ -32,7 +32,7 @@ class WishListMutators(
 
             val id = jdbc.query(
                 INSERT_QUERY,
-                mapOf(CUSTOMER_ID to customerId, CREATED_AT to createdAt, ACTIVE to true)
+                mapOf(CUSTOMER_ID to customerId, CREATED_AT to createdAt.toString(), ACTIVE to true)
             ) { rs, _ -> rs.getLong(1) }.first()
 
             WishList(id, customerId, createdAt, active = true)
@@ -104,26 +104,27 @@ class WishListMutators(
             .firstOrNull()
 
     private fun deleteItem(wishListItem: WishListItem) {
-        jdbc.query(
+        jdbc.execute(
             DELETE_ITEM_QUERY,
             mapOf(
                 PRODUCT_ID to wishListItem.productId,
                 WISH_LIST_ID to wishListItem.wishListId
             )
-        ) { _, _ -> }
+        ) { }
     }
 
     private fun disableWishList(wishListId: WishListId) {
-        jdbc.query(
-            DELETE_ITEM_QUERY,
+        jdbc.update(
+            DISABLE_QUERY,
             mapOf(ID to wishListId)
-        ) { _, _ -> }
+        )
     }
 
     private fun extractSelectionFields(environment: DataFetchingEnvironment) =
         environment.fields
             .flatMap { it.selectionSet.selections }
             .mapNotNull { it as? Field }
+            .filter { it.name != "__typename" }
 
     private fun ResultSet.toWishListItem() =
         WishListItem(
@@ -140,9 +141,10 @@ class WishListMutators(
         const val ACTIVE = "active"
 
         val INSERT_QUERY = "INSERT INTO $WISH_LIST_TABLE ($CUSTOMER_ID, $ACTIVE, $CREATED_AT) " +
-                "VALUES (:$CUSTOMER_ID, :$ACTIVE, :$CREATED_AT) RETURNING $ID"
+                "VALUES (:$CUSTOMER_ID, :$ACTIVE, :$CREATED_AT::timestamp) RETURNING $ID"
 
-        val DISABLE_QUERY = "UPDATE $WISH_LIST_TABLE SET $ACTIVE = FALSE WHERE $ID = :$ID"
+        val DISABLE_QUERY = "UPDATE $WISH_LIST_TABLE SET $ACTIVE = false " +
+                "WHERE $ID = :$ID"
 
         const val WISH_LIST_ITEM = "wish_list_item"
         const val WISH_LIST_ID = "wish_list_id"
@@ -152,11 +154,11 @@ class WishListMutators(
         val INSERT_ITEM_QUERY = "INSERT INTO $WISH_LIST_ITEM ($WISH_LIST_ID, $PRODUCT_ID, $QUANTITY) " +
                 "VALUES (:$WISH_LIST_ID, :$PRODUCT_ID, 1) RETURNING $WISH_LIST_ID, $PRODUCT_ID, $QUANTITY"
 
-        val ADD_ITEM_QUERY = "UPDATE $WISH_LIST_ITEM SET $QUANTITY = :$QUANTITY + 1 " +
+        val ADD_ITEM_QUERY = "UPDATE $WISH_LIST_ITEM SET $QUANTITY = $QUANTITY + 1 " +
                 "WHERE $WISH_LIST_ID = :$WISH_LIST_ID AND $PRODUCT_ID = :$PRODUCT_ID " +
                 "RETURNING $WISH_LIST_ID, $PRODUCT_ID, $QUANTITY"
 
-        val DEC_ITEM_QUERY = "UPDATE $WISH_LIST_ITEM SET $QUANTITY = :$QUANTITY + 1 " +
+        val DEC_ITEM_QUERY = "UPDATE $WISH_LIST_ITEM SET $QUANTITY = $QUANTITY - 1 " +
                 "WHERE $WISH_LIST_ID = :$WISH_LIST_ID AND $PRODUCT_ID = :$PRODUCT_ID " +
                 "RETURNING $WISH_LIST_ID, $PRODUCT_ID, $QUANTITY"
 

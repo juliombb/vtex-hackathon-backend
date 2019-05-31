@@ -17,20 +17,18 @@ class CustomerMutators(
     private val jdbc: NamedParameterJdbcTemplate,
     private val clock: Clock
 ) {
-    val creator: DataFetcher<Customer> =
+    val create: DataFetcher<Customer> =
         DataFetcher { env ->
-            val customerId = env.getArgument<String>("id").toLong()
             val email = env.getArgument<String>("email")
             val name = env.getArgument<String>("name")
             val cpf = env.getArgument<String>("cpf")
             val gender = env.getArgument<String>("gender")
             val phone = env.getArgument<String>("phone")
-            val birthDate = env.getArgument<String>("phone")
+            val birthDate = env.getArgument<String>("birthDate")
 
             val id = jdbc.query(
                 INSERT_CUSTOMER_QUERY,
                 mapOf(
-                    CUSTOMER_ID to customerId,
                     NAME to name,
                     CPF to cpf,
                     EMAIL to email,
@@ -40,7 +38,7 @@ class CustomerMutators(
             ) { rs, _ -> rs.getLong(1) }.first()
 
             Customer(
-                id = customerId,
+                id = id,
                 name = name,
                 cpf = cpf,
                 email = email,
@@ -62,7 +60,8 @@ class CustomerMutators(
 
         val INSERT_CUSTOMER_QUERY = "INSERT INTO $CUSTOMER_TABLE " +
                 "($NAME, $CPF, $EMAIL, $PHONE, $GENDER, $BIRTH_DATE) " +
-                "VALUES(:$NAME, :$CPF, :$EMAIL, :$PHONE, :$GENDER, :$BIRTH_DATE)"
+                "VALUES(:$NAME, :$CPF, :$EMAIL, :$PHONE, :$GENDER, :$BIRTH_DATE::timestamp) " +
+                "RETURNING $CUSTOMER_ID"
 
     }
 }
