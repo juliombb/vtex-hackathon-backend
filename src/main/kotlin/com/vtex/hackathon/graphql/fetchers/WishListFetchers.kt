@@ -6,26 +6,57 @@ import com.vtex.hackathon.graphql.model.WishListId
 import com.vtex.hackathon.graphql.util.*
 import graphql.language.Field
 import graphql.schema.DataFetcher
+import org.springframework.context.annotation.Bean
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
+import org.springframework.stereotype.Component
 import java.sql.ResultSet
 
 /**
  * @author Júlio Moreira Blás de Barros (julio.barros@movile.com)
  * @since 5/31/19
  */
+@Component
 class WishListFetchers(private val jdbc: NamedParameterJdbcTemplate) {
+
+    @Bean
+    fun wishListBaseFetcher() = wishListsById
+
+    val wishListsById: DataFetcher<WishList?> =
+        DataFetcher { environment ->
+            val id = environment.getArgument<String>("id").toLongOrNull()
+                ?: environment.getArgument<String>("wishListId").toLongOrNull()
+
+            val parentFields = environment.extractSelectionFields()
+            val wishListFields = (parentFields.filter { it.name != "products" } + ID).toSet()
+
+            val result = jdbc.query(
+                FIND_WISH_LIST_QUERY.format(wishListFields.joinToString(", ")), mapOf(ID to id)
+            ) { resultSet, _ -> resultSet.toWishList() }
+                .firstOrNull()
+
+            parentFields.find { it.name == "products" }
+                ?.let { field ->
+                    result?.copy(products = findProducts(result.wishListId!!, field))
+                }
+                ?: result
+        }
+
     val wishListsByCustomerId: DataFetcher<List<WishList?>> =
         DataFetcher { environment ->
             val customerId = environment.getArgument<String>("customerId").toLong()
 
             val parentFields = environment.extractSelectionFields()
-            val wishListFields = parentFields.map { it.name }.filter { it != "products" }
+            val wishListFields = (parentFields.filter { it.name != "products" } + ID).toSet()
 
-
-
-            jdbc.query(
-                FIND_WISH_LISTS_QUERY.format(parentFields), mapOf(CUSTOMER_ID to customerId)
+            val results = jdbc.query(
+                FIND_WISH_LISTS_QUERY.format(wishListFields.joinToString(", ")), mapOf(CUSTOMER_ID to customerId)
             ) { resultSet, _ -> resultSet.toWishList() }
+
+            parentFields.find { it.name == "products" }
+                ?.let { field ->
+                    results.map { it.copy(products = findProducts(it.wishListId!!, field)) }
+                }
+                ?: results
         }
 
 

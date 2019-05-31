@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="53e3560b-2f8b-48e0-9b17-d1aa0b63199d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/configuration/ClockConfiguration.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/WishListFetchers.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/util/GraphQLExtensions.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/CustomerCompositeFetchers.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/PurchaseFetchers.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/MarketFetchers.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/MarketFetchers.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/ProductFetchers.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/ProductFetchers.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/PurchaseMutators.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/PurchaseMutators.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/WishListFetchers.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/WishListFetchers.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/WishListMutators.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/WishListMutators.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/model/WishList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/model/WishList.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/util/ResultSetExtensions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/util/ResultSetExtensions.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/schema.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/schema.graphqls" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -58,8 +51,8 @@
           <entry key="gradle" value="1" />
           <entry key="graphqls" value="2" />
           <entry key="java" value="6" />
-          <entry key="kt" value="74" />
-          <entry key="sql" value="1" />
+          <entry key="kt" value="76" />
+          <entry key="sql" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -67,26 +60,26 @@
           <entry key="GraphQL Schema" value="2" />
           <entry key="Groovy" value="1" />
           <entry key="JAVA" value="6" />
-          <entry key="Kotlin" value="74" />
-          <entry key="SQL" value="1" />
+          <entry key="Kotlin" value="76" />
+          <entry key="SQL" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="21" />
           <entry key="gradle" value="26" />
-          <entry key="graphqls" value="1427" />
+          <entry key="graphqls" value="1468" />
           <entry key="java" value="10" />
-          <entry key="kt" value="5340" />
+          <entry key="kt" value="6158" />
           <entry key="sql" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="GraphQL Schema" value="1427" />
+          <entry key="GraphQL Schema" value="1468" />
           <entry key="Groovy" value="26" />
           <entry key="JAVA" value="10" />
-          <entry key="Kotlin" value="5338" />
+          <entry key="Kotlin" value="6156" />
           <entry key="PLAIN_TEXT" value="21" />
           <entry key="SQL" value="6" />
         </counts>
@@ -98,8 +91,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/schema.graphqls">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="109" column="40" selection-start-line="109" selection-start-column="40" selection-end-line="109" selection-end-column="40" />
+            <state relative-caret-position="250">
+              <caret line="114" lean-forward="true" selection-start-line="114" selection-end-line="114" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/CustomerMutators.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="66" lean-forward="true" selection-start-line="8" selection-start-column="66" selection-end-line="8" selection-end-column="66" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/PurchaseMutators.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="69" selection-start-line="8" selection-start-column="69" selection-end-line="8" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -107,22 +118,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/WishListMutators.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="82" column="40" lean-forward="true" selection-start-line="82" selection-start-column="40" selection-end-line="82" selection-end-column="40" />
+            <state relative-caret-position="215">
+              <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
               <folding>
                 <element signature="e#45#397#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/ProductFetchers.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
-              <folding>
-                <element signature="e#45#465#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -137,11 +136,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/WishListFetchers.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="55" column="34" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="34" />
+            <state relative-caret-position="162">
+              <caret line="31" column="36" lean-forward="true" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
               <folding>
                 <element signature="e#45#438#0" expanded="true" />
               </folding>
@@ -150,9 +149,18 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/migration.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="214">
+              <caret line="55" column="17" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/CustomerFetchers.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
+            <state relative-caret-position="561">
               <caret line="43" column="4" selection-start-line="43" selection-start-column="4" selection-end-line="49" selection-end-column="5" />
             </state>
           </provider>
@@ -179,27 +187,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/util/GraphQLExtensions.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-              <folding>
-                <element signature="e#41#116#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/model/Product.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="8" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -220,6 +207,7 @@
       <find>Fetchers \{</find>
       <find>Mutators</find>
       <find>wish</find>
+      <find>market {</find>
     </findStrings>
     <replaceStrings>
       <replace>Long</replace>
@@ -652,20 +640,20 @@
         <option value="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/GraphQLDataFetchers.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/model/Customer.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/provider/GraphQLProvider.kt" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/PurchaseMutators.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/CustomerFetchers.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/configuration/ClockConfiguration.kt" />
-        <option value="$PROJECT_DIR$/src/main/resources/schema.graphqls" />
         <option value="$PROJECT_DIR$/src/main/resources/migration.sql" />
         <option value="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/model/WishList.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/util/ResultSetExtensions.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/ProductFetchers.kt" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/WishListMutators.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/CustomerCompositeFetchers.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/util/GraphQLExtensions.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/MarketFetchers.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/PurchaseFetchers.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/WishListFetchers.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/WishListMutators.kt" />
+        <option value="$PROJECT_DIR$/src/main/resources/schema.graphqls" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/PurchaseMutators.kt" />
       </list>
     </option>
   </component>
@@ -764,15 +752,6 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="kotlin" type="462c0819:PsiDirectoryNode" />
               <item name="graphql" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vtex-hackathon-backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vtex-hackathon-backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="kotlin" type="462c0819:PsiDirectoryNode" />
-              <item name="graphql" type="462c0819:PsiDirectoryNode" />
               <item name="provider" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -829,7 +808,7 @@
     <property name="SearchEverywhereHistoryKey" value="produc&#9;FILE&#9;file:///Users/julio.barros/vtex-hackathon-backend/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/ProductFetchers.kt&#10;Purchas&#9;FILE&#9;file:///Users/julio.barros/vtex-hackathon-backend/src/main/kotlin/com/vtex/hackathon/graphql/model/Purchase.kt&#10;Wish&#9;FILE&#9;file:///Users/julio.barros/vtex-hackathon-backend/src/main/kotlin/com/vtex/hackathon/graphql/model/WishList.kt&#10;PURCHASE&#9;FILE&#9;file:///Users/julio.barros/vtex-hackathon-backend/src/main/kotlin/com/vtex/hackathon/graphql/model/Purchase.kt&#10;Product&#9;FILE&#9;file:///Users/julio.barros/vtex-hackathon-backend/src/main/kotlin/com/vtex/hackathon/graphql/model/Product.kt" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559287712422" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559290770222" />
     <property name="jsgraphql-schema-editor-notification" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/build.gradle" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="$USER_HOME$/.nvm/versions/node/v7.4.0/bin/node" />
@@ -907,12 +886,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1559268076401</updated>
-      <workItem from="1559268080039" duration="14824000" />
+      <workItem from="1559268080039" duration="17484000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14824000" />
+    <option name="totallyTimeSpent" value="17484000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
@@ -1013,13 +992,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/CustomerMutators.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="66" lean-forward="true" selection-start-line="8" selection-start-column="66" selection-end-line="8" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/model/Shelf.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1067,13 +1039,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/PurchaseMutators.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="55" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.3.0/98515ba3feb571f93b923e61f643bdaed59d14ac/kotlin-stdlib-1.3.0-sources.jar!/kotlin/Primitives.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -1105,13 +1070,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/migration.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="55" column="17" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/model/Customer.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1138,13 +1096,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/schema.graphqls">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="109" column="40" selection-start-line="109" selection-start-column="40" selection-end-line="109" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/model/Product.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1159,13 +1110,6 @@
           <folding>
             <element signature="e#45#465#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/GraphQLDataFetchers.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -1189,23 +1133,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/WishListMutators.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="82" column="40" lean-forward="true" selection-start-line="82" selection-start-column="40" selection-end-line="82" selection-end-column="40" />
-          <folding>
-            <element signature="e#45#397#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/CustomerFetchers.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="43" column="4" selection-start-line="43" selection-start-column="4" selection-end-line="49" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/PurchaseFetchers.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1213,13 +1140,65 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/CustomerFetchers.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="43" column="4" selection-start-line="43" selection-start-column="4" selection-end-line="49" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/WishListFetchers.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="55" column="34" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="34" />
+        <state relative-caret-position="162">
+          <caret line="31" column="36" lean-forward="true" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
           <folding>
             <element signature="e#45#438#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/migration.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="55" column="17" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/GraphQLDataFetchers.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/WishListMutators.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="143" lean-forward="true" selection-start-line="143" selection-end-line="143" />
+          <folding>
+            <element signature="e#45#397#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/schema.graphqls">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="114" lean-forward="true" selection-start-line="114" selection-end-line="114" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/CustomerMutators.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="66" lean-forward="true" selection-start-line="8" selection-start-column="66" selection-end-line="8" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/PurchaseMutators.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="69" selection-start-line="8" selection-start-column="69" selection-end-line="8" selection-end-column="69" />
         </state>
       </provider>
     </entry>

@@ -25,7 +25,7 @@ class WishListMutators(
     private val wishListBaseFetcher: DataFetcher<WishList>,
     private val clock: Clock
 ) {
-    val creator: DataFetcher<WishList> =
+    val create: DataFetcher<WishList> =
         DataFetcher { env ->
             val customerId = env.getArgument<String>("customerId").toLong()
             val createdAt = clock.instant()
@@ -43,8 +43,31 @@ class WishListMutators(
             val wishListId = env.getArgument<String>("wishListId").toLong()
             val productId = env.getArgument<String>("productId")
 
-            updateItem(productId, wishListId)
+            incrementItem(productId, wishListId)
                 ?: insertItem(productId, wishListId)
+
+            wishListBaseFetcher.get(env)
+        }
+
+    val removeProduct: DataFetcher<WishList> =
+        DataFetcher { env ->
+            val wishListId = env.getArgument<String>("wishListId").toLong()
+            val productId = env.getArgument<String>("productId")
+
+            val resultingItem = decrementItem(productId, wishListId)
+
+            resultingItem
+                ?.takeIf { it.quantity <= 0 }
+                ?.let { deleteItem(it) }
+
+            wishListBaseFetcher.get(env)
+        }
+
+    val disable: DataFetcher<WishList> =
+        DataFetcher { env ->
+            val wishListId = env.getArgument<String>("wishListId").toLong()
+
+            disableWishList(wishListId)
 
             wishListBaseFetcher.get(env)
         }
@@ -60,8 +83,8 @@ class WishListMutators(
             .first()
     }
 
-    private fun updateItem(productId: String?, wishListId: Long): WishListItem? {
-        return jdbc.query(
+    private fun incrementItem(productId: String?, wishListId: Long): WishListItem? =
+        jdbc.query(
             ADD_ITEM_QUERY,
             mapOf(
                 PRODUCT_ID to productId,
@@ -69,6 +92,32 @@ class WishListMutators(
             )
         ) { rs, _ -> rs.toWishListItem() }
             .firstOrNull()
+
+    private fun decrementItem(productId: String?, wishListId: Long): WishListItem? =
+        jdbc.query(
+            DEC_ITEM_QUERY,
+            mapOf(
+                PRODUCT_ID to productId,
+                WISH_LIST_ID to wishListId
+            )
+        ) { rs, _ -> rs.toWishListItem() }
+            .firstOrNull()
+
+    private fun deleteItem(wishListItem: WishListItem) {
+        jdbc.query(
+            DELETE_ITEM_QUERY,
+            mapOf(
+                PRODUCT_ID to wishListItem.productId,
+                WISH_LIST_ID to wishListItem.wishListId
+            )
+        ) { _, _ -> }
+    }
+
+    private fun disableWishList(wishListId: WishListId) {
+        jdbc.query(
+            DELETE_ITEM_QUERY,
+            mapOf(ID to wishListId)
+        ) { _, _ -> }
     }
 
     private fun extractSelectionFields(environment: DataFetchingEnvironment) =
@@ -93,6 +142,8 @@ class WishListMutators(
         val INSERT_QUERY = "INSERT INTO $WISH_LIST_TABLE ($CUSTOMER_ID, $ACTIVE, $CREATED_AT) " +
                 "VALUES (:$CUSTOMER_ID, :$ACTIVE, :$CREATED_AT) RETURNING $ID"
 
+        val DISABLE_QUERY = "UPDATE $WISH_LIST_TABLE SET $ACTIVE = FALSE WHERE $ID = :$ID"
+
         const val WISH_LIST_ITEM = "wish_list_item"
         const val WISH_LIST_ID = "wish_list_id"
         const val PRODUCT_ID = "product_id"
@@ -104,5 +155,12 @@ class WishListMutators(
         val ADD_ITEM_QUERY = "UPDATE $WISH_LIST_ITEM SET $QUANTITY = $QUANTITY + 1 " +
                 "WHERE $WISH_LIST_ID = :$WISH_LIST_ID AND $PRODUCT_ID = :$PRODUCT_ID " +
                 "RETURNING $WISH_LIST_ID, $PRODUCT_ID, $QUANTITY"
+
+        val DEC_ITEM_QUERY = "UPDATE $WISH_LIST_ITEM SET $QUANTITY = $QUANTITY + 1 " +
+                "WHERE $WISH_LIST_ID = :$WISH_LIST_ID AND $PRODUCT_ID = :$PRODUCT_ID " +
+                "RETURNING $WISH_LIST_ID, $PRODUCT_ID, $QUANTITY"
+
+        val DELETE_ITEM_QUERY = "DELETE FROM $WISH_LIST_ITEM " +
+                "WHERE $WISH_LIST_ID = :$WISH_LIST_ID AND $PRODUCT_ID = :$PRODUCT_ID "
     }
 }

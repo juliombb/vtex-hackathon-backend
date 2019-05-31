@@ -17,6 +17,8 @@ type Customer {
 type Market {
   id: ID!
   address: String!
+  asset: String!
+  name: String!
 }
 
 type ProductCategory {
@@ -108,8 +110,9 @@ type Mutation {
 
   createWishList(customerId: ID!): WishList!
   addProductToWishList(wishListId: ID!, productId: ID!): WishList!
-#  disableWishList(wishListId: ID!): WishList!
-#
+  removeProductFromWishList(wishListId: ID!, productId: ID!): WishList!
+  disableWishList(wishListId: ID!): WishList!
+
 #  startPurchase(customerId: ID!, cashBoxId: ID!): Purchase!
 #  addItemToPurchase(productId: ID!, purchaseId: ID!): Purchase!
 #  cashboxApprovePurchase(purchaseId: ID!): Purchase!
