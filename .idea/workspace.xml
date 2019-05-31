@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="53e3560b-2f8b-48e0-9b17-d1aa0b63199d" name="Default Changelist" comment="" />
+    <list default="true" id="53e3560b-2f8b-48e0-9b17-d1aa0b63199d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/movile/playkids/graphql/Application.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/Application.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/movile/playkids/graphql/configuration/PostgreSQLConfiguration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/configuration/PostgreSQLConfiguration.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/movile/playkids/graphql/fetchers/GraphQLDataFetchers.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/fetchers/GraphQLDataFetchers.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/movile/playkids/graphql/model/Child.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/model/Child.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/movile/playkids/graphql/model/Person.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/model/Person.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/movile/playkids/graphql/provider/GraphQLProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/provider/GraphQLProvider.kt" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -44,28 +51,32 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gradle" value="1" />
+          <entry key="kt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="1" />
+          <entry key="Kotlin" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="26" />
+          <entry key="java" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="26" />
+          <entry key="JAVA" value="10" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/settings.gradle">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
@@ -74,7 +85,19 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/configuration/PostgreSQLConfiguration.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="24" column="69" lean-forward="true" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="69" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="myGradleHomes">
@@ -515,6 +538,7 @@
       </profile-state>
     </entry>
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -528,6 +552,48 @@
               <item name="vtex-hackathon-backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="vtex-hackathon-backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
+            <path>
+              <item name="vtex-hackathon-backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vtex-hackathon-backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vtex-hackathon-backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vtex-hackathon-backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="vtex-hackathon-backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vtex-hackathon-backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="kotlin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vtex-hackathon-backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vtex-hackathon-backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="kotlin" type="462c0819:PsiDirectoryNode" />
+              <item name="graphql" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vtex-hackathon-backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vtex-hackathon-backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="kotlin" type="462c0819:PsiDirectoryNode" />
+              <item name="graphql" type="462c0819:PsiDirectoryNode" />
+              <item name="configuration" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vtex-hackathon-backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vtex-hackathon-backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -536,8 +602,10 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559271073963" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/build.gradle" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="$USER_HOME$/.nvm/versions/node/v7.4.0/bin/node" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -575,8 +643,13 @@
       </method>
     </configuration>
     <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="graphql-poc_main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.movile.playkids.graphql.Application" />
+      <module name="vtex-hackathon-backend_main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.vtex.hackathon.graphql.Application" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <envs>
+        <env name="JDBC_URL" value="jdbc:postgresql://localhost:5432/graphql_2" />
+        <env name="JDBC_PASSWORD" value="gqlrocks" />
+      </envs>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -609,12 +682,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1559268076401</updated>
-      <workItem from="1559268080039" duration="513000" />
+      <workItem from="1559268080039" duration="757000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="513000" />
+    <option name="totallyTimeSpent" value="757000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
@@ -625,12 +698,13 @@
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Capture Tool" />
       <window_info id="Image Layers" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2956381" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2956381" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Build" weight="0.32913166" />
       <window_info anchor="bottom" id="Spring" />
       <window_info anchor="bottom" id="Graph Database Console" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.32913166" />
+      <window_info anchor="bottom" id="GraphQL" visible="true" weight="0.32913166" />
+      <window_info anchor="bottom" id="Terminal" weight="0.32913166" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Java Enterprise" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
@@ -647,7 +721,7 @@
       <window_info anchor="right" id="Graph Database" />
       <window_info anchor="right" id="Apiary Blueprint Manager" />
       <window_info anchor="right" id="Maven Projects" />
-      <window_info anchor="right" id="Gradle" visible="true" weight="0.32956383" />
+      <window_info anchor="right" id="Gradle" visible="true" weight="0.11631664" />
       <window_info anchor="right" id="Database" />
       <window_info anchor="right" id="Palette&#9;" />
       <window_info anchor="right" id="Theme Preview" />
@@ -668,6 +742,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/com/vtex/hackathon/graphql/configuration/PostgreSQLConfiguration.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="24" column="69" lean-forward="true" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="69" />
         </state>
       </provider>
     </entry>

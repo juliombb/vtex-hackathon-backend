@@ -1,4 +1,4 @@
-package com.movile.playkids.graphql.model
+package com.vtex.hackathon.graphql.model
 
 /**
  * @author Júlio Moreira Blás de Barros (julio.barros@movile.com)

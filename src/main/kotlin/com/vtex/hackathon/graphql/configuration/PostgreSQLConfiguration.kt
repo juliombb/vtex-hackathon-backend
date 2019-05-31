@@ -1,4 +1,4 @@
-package com.movile.playkids.graphql.configuration
+package com.vtex.hackathon.graphql.configuration
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -22,9 +22,9 @@ open class PostgreSQLConfiguration {
         val dataSource = DriverManagerDataSource()
 
         dataSource.setDriverClassName("org.postgresql.Driver")
-        dataSource.url = "jdbc:postgresql://localhost:5432/graphql_2"
+        dataSource.url = System.getenv("JDBC_URL")
         dataSource.username = "gql3"
-        dataSource.password = "gqlrocks"
+        dataSource.password = System.getenv("JDBC_PASSWORD")
 
         return dataSource
     }

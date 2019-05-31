@@ -1,8 +1,8 @@
-package com.movile.playkids.graphql.fetchers
+package com.vtex.hackathon.graphql.fetchers
 
-import com.movile.playkids.graphql.model.Child
-import com.movile.playkids.graphql.model.Person
-import com.movile.playkids.graphql.model.PersonId
+import com.vtex.hackathon.graphql.model.Child
+import com.vtex.hackathon.graphql.model.Person
+import com.vtex.hackathon.graphql.model.PersonId
 import graphql.language.Field
 import graphql.schema.DataFetcher
 import org.springframework.jdbc.core.RowMapper

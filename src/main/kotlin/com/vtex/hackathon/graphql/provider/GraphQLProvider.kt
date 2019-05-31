@@ -1,7 +1,7 @@
-package com.movile.playkids.graphql.provider
+package com.vtex.hackathon.graphql.provider
 
 import com.google.common.io.Resources
-import com.movile.playkids.graphql.fetchers.GraphQLDataFetchers
+import com.vtex.hackathon.graphql.fetchers.GraphQLDataFetchers
 import graphql.GraphQL
 import graphql.schema.GraphQLSchema
 import org.springframework.context.annotation.Bean
