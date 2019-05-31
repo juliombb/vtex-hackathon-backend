@@ -3,6 +3,7 @@ package com.vtex.hackathon.graphql.fetchers
 import com.vtex.hackathon.graphql.model.Product
 import com.vtex.hackathon.graphql.util.getLongIfPresent
 import com.vtex.hackathon.graphql.util.getStringIfPresent
+import com.vtex.hackathon.graphql.util.toProduct
 import graphql.language.Field
 import graphql.schema.DataFetcher
 import graphql.schema.DataFetchingEnvironment
@@ -33,16 +34,6 @@ class ProductFetchers(private val jdbc: NamedParameterJdbcTemplate) {
             .mapNotNull { it as? Field }
             .joinToString(", ") { it.name }
         return parentFields
-    }
-
-    private fun ResultSet.toProduct(): Product {
-        return Product(
-            id = getStringIfPresent(ID),
-            category = getStringIfPresent(CATEGORY),
-            asset = getStringIfPresent(ASSET),
-            description = getStringIfPresent(DESCRIPTION),
-            price = getLongIfPresent(PRICE)
-        )
     }
 
     companion object {

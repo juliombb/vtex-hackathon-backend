@@ -1,5 +1,7 @@
 package com.vtex.hackathon.graphql.util
 
+import com.vtex.hackathon.graphql.fetchers.ProductFetchers
+import com.vtex.hackathon.graphql.model.Product
 import java.sql.ResultSet
 
 /**
@@ -24,4 +26,14 @@ fun ResultSet.hasColumn(field: String): Boolean {
     }
 
     return false
+}
+
+fun ResultSet.toProduct(): Product {
+    return Product(
+        id = getStringIfPresent(ProductFetchers.ID),
+        category = getStringIfPresent(ProductFetchers.CATEGORY),
+        asset = getStringIfPresent(ProductFetchers.ASSET),
+        description = getStringIfPresent(ProductFetchers.DESCRIPTION),
+        price = getLongIfPresent(ProductFetchers.PRICE)
+    )
 }

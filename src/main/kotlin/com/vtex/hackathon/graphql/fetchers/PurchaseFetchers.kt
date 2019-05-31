@@ -16,17 +16,7 @@ import java.sql.ResultSet
  * @since 5/31/19
  */
 @Component
-class CustomerCompositeFetchers(private val jdbc: NamedParameterJdbcTemplate) {
-    val wishListsByCustomerId: DataFetcher<List<WishList?>> =
-        DataFetcher { environment ->
-            val customerId = environment.getArgument<String>("customerId").toLong()
-
-            val parentFields = extractSelectionFields(environment)
-
-            jdbc.query(
-                FIND_WISH_LISTS_QUERY.format(parentFields), mapOf(CUSTOMER_ID to customerId)
-            ) { resultSet, _ -> resultSet.toWishList() }
-        }
+class PurchaseFetchers(private val jdbc: NamedParameterJdbcTemplate) {
 
     val purchasesByCustomerId: DataFetcher<List<Purchase?>> =
         DataFetcher { environment ->
@@ -47,24 +37,15 @@ class CustomerCompositeFetchers(private val jdbc: NamedParameterJdbcTemplate) {
         return parentFields
     }
 
-    private fun ResultSet.toWishList(): WishList {
-        return WishList(
-            wishListId = getLongIfPresent(ID),
-            customerId = getLongIfPresent(CUSTOMER_ID),
-            createdAt = getInstantIfPresent(CREATED_AT),
-            active = getBooleanIfPresent(ACTIVE) ?: true
-        )
-    }
-
     private fun ResultSet.toPurchase(): Purchase {
         return Purchase(
-            id = getLong(ID),
-            customerId = getLong(CUSTOMER_ID),
-            cashBoxId = getLong(CASH_BOX_ID),
-            status = getEnum<PurchaseStatus>(STATUS),
-            startedAt = getInstant(STARTED_AT),
-            finishedAt = getInstant(FINISHED_AT),
-            total = getLong(TOTAL)
+            id = getLongIfPresent(ID),
+            customerId = getLongIfPresent(CUSTOMER_ID),
+            cashBoxId = getLongIfPresent(CASH_BOX_ID),
+            status = getEnumIfPresent<PurchaseStatus>(STATUS),
+            startedAt = getInstantIfPresent(STARTED_AT),
+            finishedAt = getInstantIfPresent(FINISHED_AT),
+            total = getLongIfPresent(TOTAL)
         )
     }
 
@@ -82,8 +63,6 @@ class CustomerCompositeFetchers(private val jdbc: NamedParameterJdbcTemplate) {
         const val STARTED_AT = "started_at"
         const val FINISHED_AT = "finished_at"
         const val TOTAL = "total"
-
-        val FIND_WISH_LISTS_QUERY = "SELECT %s FROM wish_list WHERE customer_id = :$CUSTOMER_ID"
 
         val FIND_PURCHASES_QUERY = "SELECT %s FROM purchase WHERE customer_id = :$CUSTOMER_ID"
     }

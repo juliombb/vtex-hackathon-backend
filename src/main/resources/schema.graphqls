@@ -106,8 +106,8 @@ type Mutation {
 #    birthDate: String
 #  ): Customer!
 
-#  createWishList(customerId: ID!): WishList!
-#  addProductToWishList(productId: ID!): WishList!
+  createWishList(customerId: ID!): WishList!
+  addProductToWishList(wishListId: ID!, productId: ID!): WishList!
 #  disableWishList(wishListId: ID!): WishList!
 #
 #  startPurchase(customerId: ID!, cashBoxId: ID!): Purchase!

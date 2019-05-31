@@ -1,6 +1,7 @@
 package com.vtex.hackathon.graphql.fetchers
 
 import com.vtex.hackathon.graphql.model.Market
+import com.vtex.hackathon.graphql.util.extractSelectionFields
 import com.vtex.hackathon.graphql.util.getLongIfPresent
 import com.vtex.hackathon.graphql.util.getStringIfPresent
 import graphql.language.Field
@@ -20,20 +21,12 @@ class MarketFetchers(private val jdbc: NamedParameterJdbcTemplate) {
         DataFetcher { environment ->
             val id = environment.getArgument<String>("id").toLong()
 
-            val parentFields = extractSelectionFields(environment)
+            val parentFields = environment.extractSelectionFields().map { it.name }
 
             jdbc.query(
                 FIND_MARKET_QUERY.format(parentFields), mapOf(ID to id)
             ) { resultSet, _ -> resultSet.toMarket() }.firstOrNull()
         }
-
-    private fun extractSelectionFields(environment: DataFetchingEnvironment): String {
-        val parentFields = environment.fields
-            .flatMap { it.selectionSet.selections }
-            .mapNotNull { it as? Field }
-            .joinToString(", ") { it.name }
-        return parentFields
-    }
 
     private fun ResultSet.toMarket(): Market {
         return Market(

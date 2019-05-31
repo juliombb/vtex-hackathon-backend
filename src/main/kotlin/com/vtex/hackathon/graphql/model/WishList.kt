@@ -17,5 +17,6 @@ data class WishList (
 
 data class WishListItem (
     val productId: ProductId? = null,
-    val wishListId: WishListId? = null
+    val wishListId: WishListId? = null,
+    val quantity: Long = 1
 )
