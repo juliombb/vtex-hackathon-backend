@@ -31,13 +31,17 @@ class MarketFetchers(private val jdbc: NamedParameterJdbcTemplate) {
     private fun ResultSet.toMarket(): Market {
         return Market(
             id = getLongIfPresent(ID),
-            address = getStringIfPresent(ADDRESS)
+            address = getStringIfPresent(ADDRESS),
+            asset = getStringIfPresent(ASSET),
+            name = getStringIfPresent (name)
         )
     }
 
     companion object {
         const val ID = "id"
         const val ADDRESS = "address"
+        const val ASSET = "asset"
+        const val NAME = "name"
 
 
         val FIND_MARKET_QUERY = "SELECT %s FROM market WHERE id = :$ID"
