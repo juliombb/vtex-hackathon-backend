@@ -60,6 +60,9 @@ class CustomerMutators(
         const val GENDER = "gender"
         const val BIRTH_DATE = "birth_date"
 
-        val INSERT_CUSTOMER_QUERY = "INSERT INTO "
+        val INSERT_CUSTOMER_QUERY = "INSERT INTO $CUSTOMER_TABLE " +
+                "($NAME, $CPF, $EMAIL, $PHONE, $GENDER, $BIRTH_DATE) " +
+                "VALUES(:$NAME, :$CPF, :$EMAIL, :$PHONE, :$GENDER, :$BIRTH_DATE)"
+
     }
 }
