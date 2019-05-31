@@ -1,31 +1,117 @@
-type Person {
-  id: ID!
-  name: String!
-  age: Int!
-  children: [Child!]!
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
 }
 
-type Child {
+type Customer {
   id: ID!
+  email: String!
   name: String!
-  age: Int!
-  parentId: ID!
-  favoriteCartoonId: Int!
+  cpf: String!
+  gender: Gender
+  phone: String
+  birthDate: String
+}
+
+type Market {
+  id: ID!
+  address: String!
+}
+
+type ProductCategory {
+  id: String!
+  description: String
+}
+
+type Product {
+  id: ID!
+  category: String!
+  asset: String!
+  description: String
+  price: Long!
+}
+
+enum CashBoxStatus {
+  AVAILABLE,
+  IN_USE,
+  CLOSED
+}
+
+type CashBox {
+  id: ID!
+  marketId: Long!
+  status: CashBoxStatus!
+}
+
+enum PurchaseStatus {
+  STARTED,
+  CASHBOX_APPROVED,
+  FINISHED,
+  ABORTED
+}
+
+type Purchase {
+  id: ID!
+  customerId: Long!
+  cashBoxId: Long!
+  products: [Product!]!
+  startedAt: String!
+  finishedAt: String
+  total: Long!
+}
+
+type PurchaseItem {
+  purchaseId: Long!
+  productId: String!
+  quantity: Long!
+}
+
+type Shelf {
+  id: ID!
+  category: String!
+}
+
+type WishList {
+  wishListId: Long!
+  customerId: Long!
+  createdAt: String!
+  products: [Product!]!
+}
+
+type WishListItem {
+  productId: Long!
+  wishListId: Long!
 }
 
 type Query {
-  allPersons(last: Int): [Person!]!
+#  allMarkets(): [Market!]!
 
-  personById(id: ID): Person
+  customerById(id: ID!): Customer
+  customerByEmail(email: String!): Customer
+#  customerPurchases(customerId: ID!): [Purchase!]!
+#  customerWishLists(customerId: ID!, active: Boolean = true): [WishList!]!
+#
+#  product(id: ID!): Product!
 }
 
 type Mutation {
-  createPerson(name: String!, age: Int!): Person!
+#  createCustomer(
+#    id: ID!
+#    email: String!
+#    name: String!
+#    cpf: String!
+#    gender: Gender
+#    phone: String
+#    birthDate: String
+#  ): Customer!
 
-  newChild(
-    parentId: ID!,
-    name: String!,
-    age: Int!,
-    favoriteCartoonId: Int!
-  ): Person!
+#  createWishList(customerId: ID!): WishList!
+#  addProductToWishList(productId: ID!): WishList!
+#  disableWishList(wishListId: ID!): WishList!
+#
+#  startPurchase(customerId: ID!, cashBoxId: ID!): Purchase!
+#  addItemToPurchase(productId: ID!, purchaseId: ID!): Purchase!
+#  cashboxApprovePurchase(purchaseId: ID!): Purchase!
+#  customerApprovePurchase(purchaseId: ID!): Purchase!
 }

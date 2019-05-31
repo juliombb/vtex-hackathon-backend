@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
  * @since 2/7/19
  */
 
-@SpringBootApplication(scanBasePackages = ["com.movile.playkids.graphql"])
+@SpringBootApplication(scanBasePackages = ["com.vtex.hackathon.graphql"])
 open class Application
 
 fun main(args: Array<String>) {
