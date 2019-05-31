@@ -74,7 +74,7 @@ class GraphQLProvider(
 
                     .dataFetcher("startPurchase", purchaseMutators.create)
                     .dataFetcher("addItemToPurchase", purchaseMutators.addProduct)
-                    .dataFetcher("cashboxApprovePurchase", purchaseMutators.cashBoxApprove)
+                    .dataFetcher("cashboxApprovePurchase", purchaseMutators.cashboxApprove)
                     .dataFetcher("customerApprovePurchase", purchaseMutators.customerApprove)
             )
             .build()

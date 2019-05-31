@@ -65,8 +65,9 @@ enum PurchaseStatus {
 type Purchase {
   id: ID!
   customerId: Long!
-  cashBoxId: Long!
+  cashboxId: Long!
   products: [FullItem!]!
+  status: PurchaseStatus!
   startedAt: String!
   finishedAt: String
   total: Long!
@@ -123,7 +124,7 @@ type Mutation {
   removeProductFromWishList(wishListId: ID!, productId: ID!): WishList!
   disableWishList(wishListId: ID!): WishList!
 
-  startPurchase(customerId: ID!, cashBoxId: ID!): Purchase!
+  startPurchase(customerId: ID!, cashboxId: ID!): Purchase!
   addItemToPurchase(purchaseId: ID!, productId: ID!): Purchase!
   cashboxApprovePurchase(purchaseId: ID!): Purchase!
   customerApprovePurchase(purchaseId: ID!): Purchase!

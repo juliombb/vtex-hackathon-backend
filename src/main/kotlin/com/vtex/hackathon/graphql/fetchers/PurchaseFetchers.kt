@@ -35,7 +35,7 @@ class PurchaseFetchers(private val jdbc: NamedParameterJdbcTemplate) {
             val parentFields = extractSelectionFields(environment)
 
             val fields = (
-                    parentFields.map { it.name }.filter { it != "products" } + STATUS + ID
+                    parentFields.map { it.name.toSnakeCase() }.filter { it != "products" } + STATUS + ID
                 ).toSet()
 
             val result = jdbc.query(
@@ -56,7 +56,7 @@ class PurchaseFetchers(private val jdbc: NamedParameterJdbcTemplate) {
             val parentFields = extractSelectionFields(environment)
 
             val fields = (
-                parentFields.map { it.name }.filter { it != "products" } + STATUS + ID
+                parentFields.map { it.name.toSnakeCase() }.filter { it != "products" } + STATUS + ID
             ).toSet()
 
             val result = jdbc.query(
@@ -91,7 +91,7 @@ class PurchaseFetchers(private val jdbc: NamedParameterJdbcTemplate) {
         return Purchase(
             id = getLongIfPresent(ID),
             customerId = getLongIfPresent(CUSTOMER_ID),
-            cashBoxId = getLongIfPresent(CASH_BOX_ID),
+            cashboxId = getLongIfPresent(CASH_BOX_ID),
             status = getEnumIfPresent<PurchaseStatus>(STATUS),
             startedAt = getInstantIfPresent(STARTED_AT),
             finishedAt = getInstantIfPresent(FINISHED_AT),

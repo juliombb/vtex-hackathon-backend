@@ -27,7 +27,7 @@ class PurchaseMutators(
     val create: DataFetcher<Purchase> =
         DataFetcher { env ->
             val customerId = env.getArgument<String>("customerId").toLong()
-            val cashBoxId = env.getArgument<String>("cashBoxId").toLong()
+            val cashboxId = env.getArgument<String>("cashboxId").toLong()
             val status = PurchaseStatus.STARTED
             val startedAt = clock.instant()
 
@@ -35,7 +35,7 @@ class PurchaseMutators(
                 INSERT_QUERY,
                 mapOf(
                     CUSTOMER_ID to customerId,
-                    CASH_BOX_ID to cashBoxId,
+                    CASH_BOX_ID to cashboxId,
                     STATUS to status.name,
                     STARTED_AT to startedAt.toString(),
                     TOTAL to 0
@@ -45,7 +45,7 @@ class PurchaseMutators(
             Purchase(
                 id = id,
                 customerId = customerId,
-                cashBoxId = cashBoxId,
+                cashboxId = cashboxId,
                 status = status,
                 startedAt = startedAt)
         }
@@ -68,7 +68,7 @@ class PurchaseMutators(
             purchasetBaseFetcher.get(env)
         }
 
-    val cashBoxApprove: DataFetcher<Purchase> =
+    val cashboxApprove: DataFetcher<Purchase> =
             DataFetcher { env ->
                 val purchaseId = env.getArgument<String>("purchaseId").toLong()
 
@@ -79,7 +79,7 @@ class PurchaseMutators(
                     return@DataFetcher basePurchase
                 }
 
-                cashBoxApprove(purchaseId)
+                cashboxApprove(purchaseId)
 
                 purchasetBaseFetcher.get(env)
             }
@@ -100,22 +100,22 @@ class PurchaseMutators(
             purchasetBaseFetcher.get(env)
         }
 
-    fun cashBoxApprove (purchaseId: PurchaseId) {
-        jdbc.query(
+    fun cashboxApprove (purchaseId: PurchaseId) {
+        jdbc.update(
             UPDATE_STATUS,
             mapOf(STATUS to PurchaseStatus.CASHBOX_APPROVED.name, ID to purchaseId)
-        ) { _, _ -> }
+        )
     }
 
     fun customerApprove (purchaseId: PurchaseId) {
-        jdbc.query(
+        jdbc.update(
             UPDATE_STATUS_AND_FINISH,
             mapOf(
                 STATUS to PurchaseStatus.FINISHED.name,
                 ID to purchaseId,
                 FINISHED_AT to clock.instant().toString()
             )
-        ) { _, _ -> }
+        )
     }
 
     private fun insertItem(productId: String?, purchaseId: Long): PurchaseItem {
@@ -218,7 +218,7 @@ class PurchaseMutators(
                 "WHERE $ID = :$ID"
 
         val UPDATE_STATUS_AND_FINISH = "UPDATE $PURCHASE_TABLE " +
-                "SET $STATUS = :$STATUS, $FINISHED_AT = :$FINISHED_AT " +
+                "SET $STATUS = :$STATUS, $FINISHED_AT = :$FINISHED_AT::timestamp " +
             "WHERE $ID = :$ID"
 
         const val PURCHASE_ITEM = "purchase_item"
